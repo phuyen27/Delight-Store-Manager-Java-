@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6a8797a-0873-4040-941b-16c9b0cbbd54">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="MaDH" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     KhachHang."HoKH" AS KhachHang_HoKH,
+     KhachHang."TenKH" AS KhachHang_TenKH,
+     SanPham."MaSP" AS SanPham_MaSP,
+     SanPham."TenSP" AS SanPham_TenSP,
+     SanPham."DonGia" AS SanPham_DonGia,
+     DonDH."MaDH" AS DonDH_MaDH,
+     DonDH."TongTien" AS DonDH_TongTien,
+     DonDH."NgayDat" AS DonDH_NgayDat,
+     ChiTietDH."SoLuong" AS ChiTietDH_SoLuong
+FROM
+     "dbo"."KhachHang" KhachHang INNER JOIN "dbo"."DonDH" DonDH ON KhachHang."MaKH" = DonDH."MaKH"
+     INNER JOIN "dbo"."ChiTietDH" ChiTietDH ON DonDH."MaDH" = ChiTietDH."MaDH"
+     INNER JOIN "dbo"."SanPham" SanPham ON ChiTietDH."MaSP" = SanPham."MaSP"
+WHERE
+     DonDH."MaDH" = $P{MaDH}]]>
+	</queryString>
+	<field name="KhachHang_HoKH" class="java.lang.String"/>
+	<field name="KhachHang_TenKH" class="java.lang.String"/>
+	<field name="SanPham_MaSP" class="java.lang.Integer"/>
+	<field name="SanPham_TenSP" class="java.lang.String"/>
+	<field name="SanPham_DonGia" class="java.math.BigDecimal"/>
+	<field name="DonDH_MaDH" class="java.lang.Integer"/>
+	<field name="DonDH_TongTien" class="java.math.BigDecimal"/>
+	<field name="DonDH_NgayDat" class="java.sql.Timestamp"/>
+	<field name="ChiTietDH_SoLuong" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<image>
+				<reportElement x="60" y="4" width="73" height="61" uuid="e687a4ac-cbd4-41f5-9696-f1e76ef6a67a"/>
+				<imageExpression><![CDATA["C:\\Users\\USER\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="133" y="19" width="263" height="28" forecolor="#006633" uuid="17894307-b801-4fa4-b43f-ff5f5e129904"/>
+				<textElement>
+					<font size="16" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[CỬA HÀNG GIÁNG SINH DELGHT]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="9ee32ff0-1664-4018-89ce-4cab0dd89724"/>
+				<text><![CDATA[Số hóa đơn]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="e9bf9e87-db38-4632-8e24-c536223da92e"/>
+				<textFieldExpression><![CDATA[$F{DonDH_MaDH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="20" uuid="b48d90fe-bb23-460b-9433-91178e01e5c4"/>
+				<text><![CDATA[Tên khách hàng]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="20" width="100" height="20" uuid="96637342-d9af-4b93-a07b-872416feecaa"/>
+				<textFieldExpression><![CDATA[$F{KhachHang_HoKH} + $F{KhachHang_TenKH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="314" y="2" width="100" height="20" uuid="bb373ccf-ade5-40e9-89d3-f6ed9c6068e0"/>
+				<text><![CDATA[Ngày đặt hàng]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="417" y="2" width="100" height="20" uuid="56fee09a-3dbd-43a2-9b93-544e114c43e4"/>
+				<textFieldExpression><![CDATA[$F{DonDH_NgayDat}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="133" height="20" uuid="c0d8a94e-ec9a-4e9a-835c-4fbab15a8278"/>
+				<text><![CDATA[Mã sản phẩm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="0" width="140" height="20" uuid="0d5a7c6f-2029-4197-80f2-e9649b813404"/>
+				<text><![CDATA[Tên sản phẩm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="0" width="138" height="20" uuid="17acfeda-e477-4028-adb2-3f84407b9fb2"/>
+				<text><![CDATA[Số lượng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="416" y="0" width="139" height="20" uuid="ea6f0d20-3657-4f3d-93df-dc51c2b976d1"/>
+				<text><![CDATA[Đơn giá]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="133" height="20" uuid="70046f7f-343c-4cb5-b902-dbe6f71410e8"/>
+				<textFieldExpression><![CDATA[$F{SanPham_MaSP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="0" width="140" height="20" uuid="82b2a7b5-ee23-4c9d-9a2b-948b895e28de"/>
+				<textFieldExpression><![CDATA[$F{SanPham_TenSP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="0" width="138" height="20" uuid="2e34af45-f76f-465f-8d81-d8f78b6bf93a"/>
+				<textFieldExpression><![CDATA[$F{ChiTietDH_SoLuong}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="0" width="138" height="20" uuid="bdaea335-b02b-4786-8fc4-42ba48f8a8e3"/>
+				<textFieldExpression><![CDATA[$F{SanPham_DonGia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="296" y="0" width="100" height="20" uuid="b475729d-5f22-47cf-8f33-f3b77bd60bb0"/>
+				<text><![CDATA[Tổng tiền]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="396" y="0" width="100" height="20" uuid="b521565d-0ebc-49dd-b525-49ef0d6b8a1b"/>
+				<textFieldExpression><![CDATA[$F{DonDH_TongTien}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
