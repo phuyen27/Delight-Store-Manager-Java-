@@ -1,6 +1,6 @@
 # Delight Store Manager Java (NetBeans Project)
 
-A robust **Java-based application** built using **NetBeans** and **SQL Server** to manage and optimize various store operations. This system focuses on **customer management**, **employee management**, **inventory tracking**, **order management**, and **reporting**, providing comprehensive solutions to enhance store performance and customer satisfaction.
+ **Java-based application** built using **NetBeans** and **SQL Server** to manage and optimize various store operations. This system focuses on **customer management**, **employee management**, **inventory tracking**, **order management**, and **reporting**, providing comprehensive solutions to enhance store performance and customer satisfaction.
 
 ## 🔧 Core Features
 
